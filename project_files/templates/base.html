@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Cafeteria Occupancy{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav class="topnav">
+    <div class="nav-inner">
+      <span class="nav-logo">☕ CafeteriaPredict</span>
+      <div class="nav-links">
+        <a href="/about" class="nav-link {% if request.url.path == '/about' or request.url.path == '/' %}active{% endif %}">About</a>
+        <a href="/cafeOccupancyPredictor" class="nav-link {% if request.url.path == '/cafeOccupancyPredictor' %}active{% endif %}">Predictor</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <span>Cafeteria Occupancy Prediction System</span>
+  </footer>
+</body>
+</html>
