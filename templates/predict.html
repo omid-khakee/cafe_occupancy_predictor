@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Result — CafeteriaPredict{% endblock %}
+
+{% block content %}
+<div class="result-page">
+  <div class="result-card">
+    <div class="result-eyebrow">Prediction Result</div>
+    <div class="result-number">{{ prediction | int }}</div>
+    <div class="result-label">people expected in 1 hour</div>
+
+    <div class="result-bar-wrap">
+      {% set pct = [((prediction | int) / 150 * 100), 100] | min %}
+      <div class="result-bar-track">
+        <div class="result-bar-fill" style="width: {{ pct }}%"></div>
+      </div>
+      <div class="result-bar-labels">
+        <span>Empty</span>
+        <span>Capacity (150)</span>
+      </div>
+    </div>
+
+    <div class="result-status">
+      {% if prediction | int < 30 %}
+        <span class="status-chip status-low">🟢 Low — Great time to visit</span>
+      {% elif prediction | int < 80 %}
+        <span class="status-chip status-mid">🟡 Moderate — Expect some wait</span>
+      {% else %}
+        <span class="status-chip status-high">🔴 Busy — Consider going later</span>
+      {% endif %}
+    </div>
+
+    <a href="/cafeOccupancyPredictor" class="back-btn">← Run Another Prediction</a>
+  </div>
+</div>
+{% endblock %}
